@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>跑马灯</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<style type="text/css">
+		input:hover{
+			color:red;
+		}
+
+	</style>
+</head>
+<body>
+	
+	<div id="app">
+		<input type="button" value="浪起来" @click="lang">
+		<input type="button" value="猥琐" v-on:click.stop="stop">
+		<h2>{{ msg }}</h2>
+		<h3 v-if="true">{{ msg }}</h3>
+	</div>
+
+<script type="text/javascript">
+var vm = new Vue({
+	el: '#app',
+
+	data: {
+		msg: '猥琐发育，别浪～～～',
+		myInterval: null
+	},
+
+	methods: {
+
+		//方法
+		lang(){
+
+			//定时器是否为空判断，防止多次定时
+			if (this.myInterval != null) return;
+
+			this.myInterval = setInterval(() => {
+				//截取第一个字符串
+				var start = this.msg.substring(0,1);
+				//截取后面的字符串
+				var end = this.msg.substring(1);
+				//将第一个字符拼接到最后
+				this.msg = end + start;
+			},400)
+		},
+
+		stop: function(){
+			clearInterval(this.myInterval);
+			//同时定时器设为空
+			this.myInterval = null;
+		}
+	}
+})
+</script>
+
+</body>
+</html>

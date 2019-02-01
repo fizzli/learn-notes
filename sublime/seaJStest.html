@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>seaJS</title>
+	<script type="text/javascript" src="plugins/sea-min.js"></script>
+	<script type="text/javascript" src="plugins/jquery-2.1.1.js"></script>
+
+	<style type="text/css">
+
+		#hello {
+		  position: absolute;
+		  top: 50px;
+		  left: 30px;
+		  font-size: 25px;
+		  color: #616C75;
+		  opacity: .6;
+		  display: none;
+		}
+		#wish {
+		  /*text-align: center;*/
+		  margin-left: 90px ;
+		  color: #AACFBA;
+		}
+
+	</style>
+</head>
+<body>
+	
+	<div id="sea-pic">
+        <p id="moduleId"></p>
+        <img id="beautiful-sea" src="img/sea.jpg" width="300" height="300">
+        <p id="wish">让生活更美好</p>
+        <p id="hello">Hello, modular world!</p>
+    </div>
+
+<script type="text/javascript">
+
+	seajs.config({
+		alias : {
+			'jquery': './plugins/jquery-2.1.1.js'
+		}
+	});
+
+	seajs.use(['./seaJStest','jquery'], function(helloOne, ab) {
+
+		helloOne.init();
+
+	 	 ab('#beautiful-sea').click(helloOne.init);
+	 	 //ab('#beautiful-sea').click(helloOne.sayHi);
+	 	 //ab('#beautiful-sea').click(helloOne.showModuleId);
+	});
+
+	console.dir(seajs.cache);
+	
+
+	seajs.use('jquery');
+
+</script>
+	
+</body>
+</html>

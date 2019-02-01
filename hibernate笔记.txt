@@ -1,0 +1,38 @@
+xxx.hbm.xml
+
+<hibernate-mapping>
+	<class name="" table="">
+		<id name="">
+			<generator class=""></generator>
+		</id>
+		<property></property>
+		<component></component>
+		<many-to-one></many-to-one>
+
+	</class>
+</hibernate-mapping>
+
+xxx.cfg.xml
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.driver_class"></property>
+		...
+		<mapping resource="xx/xx/xx"></mapping>
+	</session-factory>
+</hibernate-configuration>
+
+
+
+第一步:创建数据库表
+
+第二步:创建POJO类
+
+第三步:编写xxx.hbm.xml
+
+第四步:编写xxx.cfg.xml
+	1.数据库连接
+	2.hibernate可选项配置
+	3.资源文件(映射文件(xxx.hbm.xml))
+
+第五步:编写测试类

@@ -1,0 +1,11 @@
+查看当前仓库状态：git status
+初始化一个仓库：git init
+把文件提交到缓存区：git add
+把缓存区文件提交到git仓库：git commit [-m 'commit statement']
+查看提交记录：git log
+查看当前分支：git branch
+新建分支：git branch branchname     
+切换分支：git checkout branchname
+新建分支并切换：git checkout -b branchname
+合并分支：git merge branchname
+删除分支：git branch -d branchname

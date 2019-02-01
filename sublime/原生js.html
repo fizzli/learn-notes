@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原生js</title>
+</head>
+<body>
+	
+
+	<p id="timeTraveling"></p>
+	<button id="button1">button</button>
+	
+
+	<script type="text/javascript">
+		var marty = {
+			firstName : "Marty",
+			lastName : "McFly",
+
+			timeTravel : function(year){
+				console.log(this.firstName + " " + this.lastName + " " + "is time traveling to " + year);
+				console.log(this);
+			}		
+		}
+
+		marty.timeTravel(1955);
+
+
+		var doc = {
+			firstName : "Michel"
+		}
+
+		doc.timeTravel = marty.timeTravel;
+		
+		doc.timeTravel(1994);
+
+		var timeTravel = marty.timeTravel;
+		timeTravel(2000);
+
+
+		var btn = document.getElementById("button1");
+		btn.addEventListener('click',marty.timeTravel);
+
+		// btn.addEventListener("click", function(){
+		// 	marty.timeTravel(2001)
+		// });
+	</script>
+</body>
+</html>

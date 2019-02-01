@@ -1,0 +1,41 @@
+渠道端：
+demo/getBankNameByCardNo
+demo/getCustUserInfoByPhone
+account/smsCodeSend
+demo/checkTradePwd 校验交易密码
+demo/checkUserInfo 根据身份证 姓名 银行卡号查询用户是否存在
+
+
+前置端：
+
+demo/getSmsCodeAndSend   用户校验及短信校验
+
+demo/userRegister
+demo/validateMsCode 校验短信验证码
+
+
+-----
+公告：
+demo/getBankNotice
+
+李四
+342201199105307032
+13053060767
+
+
+--------
+前置：
+校验客户信息及交易密码
+demo/checkUserAndTradePwd
+
+<?xml version="1.0" encoding="utf-8"?>
+<trans name="in/demo/checkUserAndTradePwd" desc="校验客户信息及交易密码">
+	<snd>
+		<field name="CUST_NAME" desc="用户姓名" required="true" />
+		<field name="CERT_NO" desc="身份证号" required="true" />
+		<field name="CARD_NO" desc="银行卡号" required="true" />
+		<field name="TRADE_PASSWD" desc="交易密码" required="true" />
+	</snd>
+	<rcv>
+	</rcv>
+</trans>

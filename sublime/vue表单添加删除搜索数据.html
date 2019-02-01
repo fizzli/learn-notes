@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue表单添加删除搜素数据</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div id="app">
+
+		<!-- 添加、删除、搜索 -->
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title text-center">添加品牌</h3>
+			</div>
+			<div class="panel-body form-inline text-center">
+				<label>
+				Id:
+				<input class="form-control" type="text" name="Id" v-model="id">
+			</label>
+			<label>
+				name:
+				<input class="form-control" type="text" name="name" v-model='name'>
+			</label>
+
+			<label>
+				<input class="btn btn-primary" type="button" name="addCar" value="添加" @click="add">
+			</label>
+
+			<label>
+				搜索:
+				<input class="form-control" type="text" name="keywords" v-model='keywords'>
+			</label>
+			</div>
+		</div>
+		
+		<!-- 表格 -->
+		<table class="table table-bordered table-hover table-striped text-center">
+			<thead>
+				<tr>
+					<th class="text-center">Id</th>
+					<th class="text-center">Name</th>
+					<th class="text-center">Ctime</th>
+					<th class="text-center">Operation</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="(item, i) in search(keywords)" :key="item.id">
+					<td>{{ item.id }}</td>
+					<td>{{ item.name }}</td>
+					<td>{{ item.ctime | formatTime }}</td>
+					<td><input class="btn btn-danger" type="button" value="删除" @click="del(i)"></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	
+
+	<script type="text/javascript">
+
+		//过滤器--全局过滤器
+		Vue.filter('formatTime', function(date){
+
+			 return    date.getFullYear() + '-' 
+			 		+ (date.getMonth() + 1) + '-' 
+			 		+ date.getDate() + ' ' 
+			 		+ date.getHours() + ':' 
+			 		+ date.getMinutes() + ':' 
+			 		+ date.getSeconds();
+		})
+
+		//vue实例化
+		var vm = new Vue({
+			el: '#app',
+
+			data:{
+				id: '',
+				name: '',
+				keywords: '',
+				list: [
+					{"id":1, "name": '奔驰', "ctime": new Date()},
+					{id:2, name: '宝马', ctime: new Date()},
+				]
+
+			},
+			methods:{
+
+				add(){
+					console.log("add...");
+					if (this.id != '' && this.name != '') {
+						this.list.push({id: this.id, name: this.name, ctime: new Date()});
+						this.id = '';
+						this.name = '';
+					}
+				},
+				del(i){
+					console.log("del...");
+					var isTrue = confirm('确定删除?');
+					if (isTrue) {
+						this.list.splice(i, 1);
+					}				
+				},
+				search(keywords){
+					console.log("search...");
+					
+					//如果为空直接返回list
+					if (keywords === '') {
+						return this.list;
+					}
+
+					//根据字符匹配包含的name，放到新list中，返回
+					var newList = [];
+					this.list.forEach(item =>{
+						console.log(item);
+						if (item.name.indexOf(keywords) != -1) {
+							newList.push(item);
+						}
+					})
+					return newList
+				}
+			}
+		});
+	</script>
+</body>
+</html>
